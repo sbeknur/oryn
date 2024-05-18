@@ -1,12 +1,5 @@
 import express from "express";
-import {
-  createPlace,
-  deletePlace,
-  getPlace,
-  getPlaces,
-  updatePlace,
-  updatePlaceAvailability,
-} from "../controllers/place.js";
+import { createPlace, deletePlace, getPlace, getPlaces, updatePlace, updatePlaceAvailability } from "../controllers/place.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
