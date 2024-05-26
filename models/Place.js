@@ -16,6 +16,9 @@ const PlaceSchema = new mongoose.Schema(
         unavailableDates: {
             type: [Date],
         },
+        position: {
+            type: [],
+        }
     },
     { timestamps: true }
 );
