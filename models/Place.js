@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 const PlaceSchema = new mongoose.Schema(
     {
+        number: {
+            type: Number,
+            required: true,
+        },
         maxPeople: {
             type: Number,
             required: true,
@@ -9,7 +13,9 @@ const PlaceSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        placeNumbers: [{ number: Number, unavailableDates: { type: [Date] } }],
+        unavailableDates: {
+            type: [Date],
+        },
     },
     { timestamps: true }
 );

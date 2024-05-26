@@ -10,7 +10,7 @@ export const createPlace = async (req, res, next) => {
         const savedPlace = await newPlace.save();
         try {
             await Restaurant.findByIdAndUpdate(restaurantId, {
-                $push: { places: savedPlace._id },
+                $push: { places: savedPlace},
             });
         } catch (err) {
             next(err);
@@ -35,7 +35,7 @@ export const updatePlaceAvailability = async (req, res, next) => {
             { "placeNumbers._id": req.params.id },
             {
                 $push: {
-                    "placeNumbers.$.unavailableDates": req.body.dates,
+                    "unavailableDates": req.body.dates,
                 },
             }
         );
@@ -68,6 +68,7 @@ export const getPlace = async (req, res, next) => {
         next(err);
     }
 };
+
 export const getPlaces = async (req, res, next) => {
     try {
         const places = await Place.find();

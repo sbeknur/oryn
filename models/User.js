@@ -30,6 +30,13 @@ const UserSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        isRestaurant: {
+            type: Boolean,
+            default: false,
+        },
+        orders: {
+            type: [],
+        },
     },
     { timestamps: true }
 );

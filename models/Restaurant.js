@@ -20,10 +20,6 @@ const RestaurantSchema = new mongoose.Schema({
     photos: {
         type: [String],
     },
-    title: {
-        type: String,
-        required: true,
-    },
     desc: {
         type: String,
         required: true,
@@ -34,7 +30,13 @@ const RestaurantSchema = new mongoose.Schema({
         max: 5,
     },
     places: {
+        type: [],
+    },
+    map: {
         type: [String],
+    },
+    menu: {
+        type: [],
     },
 });
 
