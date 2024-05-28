@@ -19,6 +19,9 @@ const OrderSchema = new mongoose.Schema({
         required: true,
         default: false,
     },
+    date: {
+        type: Date,
+    }
 });
 
 export default mongoose.model("Order", OrderSchema);

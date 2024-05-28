@@ -14,7 +14,6 @@ router.delete("/:id/:userid", verifyAdmin, deleteOrder);
 
 router.get("/:id", getOrder);
 //GET ALL
-
 router.get("/", getOrders);
 
 export default router;
