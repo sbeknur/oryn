@@ -64,3 +64,16 @@ export const getOrders = async (req, res, next) => {
         next(err);
     }
 };
+
+export const getOrdersByUser = async (req, res, next) => {
+    const userId = req.params.userid;
+
+    try {
+        const user = await User.findById(userId);
+        const orders = user.orders;
+        res.status(200).json(orders);
+    } catch (err) {
+        next(err);
+    }
+};
+
