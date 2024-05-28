@@ -20,8 +20,13 @@ const OrderSchema = new mongoose.Schema({
         default: false,
     },
     date: {
-        type: Date,
-    }
+        start: {
+            type: Date,
+        },
+        duration: {
+            type: Number,
+        },
+    },
 });
 
 export default mongoose.model("Order", OrderSchema);

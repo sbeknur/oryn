@@ -1,5 +1,5 @@
 import Order from "../models/Order.js";
-import Restaurant from "../models/Restaurant.js";
+import User from "../models/User.js";
 import { createError } from "../utils/error.js";
 
 export const createOrder = async (req, res, next) => {
@@ -9,7 +9,7 @@ export const createOrder = async (req, res, next) => {
     try {
         const savedOrder = await newOrder.save();
         try {
-            await Restaurant.findByIdAndUpdate(userId, {
+            await User.findByIdAndUpdate(userId, {
                 $push: { orders: savedOrder},
             });
         } catch (err) {
@@ -35,7 +35,7 @@ export const deleteOrder = async (req, res, next) => {
     try {
         await Order.findByIdAndDelete(req.params.id);
         try {
-            await Restaurant.findByIdAndUpdate(userId, {
+            await User.findByIdAndUpdate(userId, {
                 $pull: { orders: req.params.id },
             });
         } catch (err) {
