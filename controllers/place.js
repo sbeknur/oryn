@@ -29,21 +29,7 @@ export const updatePlace = async (req, res, next) => {
         next(err);
     }
 };
-export const updatePlaceAvailability = async (req, res, next) => {
-    try {
-        await Place.updateOne(
-            { "placeNumbers._id": req.params.id },
-            {
-                $push: {
-                    "unavailableDates": req.body.dates,
-                },
-            }
-        );
-        res.status(200).json("Place status has been updated.");
-    } catch (err) {
-        next(err);
-    }
-};
+
 export const deletePlace = async (req, res, next) => {
     const restaurantId = req.params.restaurantid;
     try {
