@@ -10,10 +10,6 @@ export const createOrder = async (req, res, next) => {
     try {
         const savedOrder = await newOrder.save();
         try {
-            await Place.findOne({ number: Number(savedOrder.place)}, {
-                $push: {unavailableDates: savedOrder.date.start}
-            })
-
             await User.findByIdAndUpdate(userId, {
                 $push: { orders: savedOrder },
             });
