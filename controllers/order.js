@@ -76,9 +76,7 @@ export const getOrdersByUser = async (req, res, next) => {
         const orders = await Promise.all(ordersPromises);
         user.orders = orders;
 
-        const detailedOrders = user.orders;
-
-        res.status(200).json(detailedOrders);
+        res.status(200).json(user.orders);
     } catch (err) {
         next(err);
     }
