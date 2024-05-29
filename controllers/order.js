@@ -11,7 +11,7 @@ export const createOrder = async (req, res, next) => {
         const savedOrder = await newOrder.save();
         try {
             await User.findByIdAndUpdate(userId, {
-                $push: { orders: savedOrder },
+                $push: { orders: savedOrder._id },
             });
         } catch (err) {
             next(err);
