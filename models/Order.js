@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const OrderSchema = new mongoose.Schema({
     foods: {
-        type: [String],
+        type: [],
     },
     bill: {
         type: Number,
