@@ -71,8 +71,12 @@ export const getOrdersByUser = async (req, res, next) => {
 
     try {
         const user = await User.findById(userId);
-        const orders = user.orders;
-        res.status(200).json(orders);
+
+        const ordersPromises = user.orders.map((orderId) => Order.findById(orderId));
+        const orders = await Promise.all(ordersPromises);
+        user.orders = orders;
+
+        res.status(200).json(user.orders);
     } catch (err) {
         next(err);
     }
