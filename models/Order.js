@@ -12,7 +12,7 @@ const OrderSchema = new mongoose.Schema({
         required: true,
     },
     place: {
-        type: String,
+        type: Number,
     },
     isPaid: {
         type: String,
