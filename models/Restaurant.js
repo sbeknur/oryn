@@ -30,13 +30,13 @@ const RestaurantSchema = new mongoose.Schema({
         max: 5,
     },
     places: {
-        type: [],
+        type: [String],
     },
     map: {
         type: [String],
     },
     menu: {
-        type: [],
+        type: [String],
     },
 });
 
