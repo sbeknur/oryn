@@ -11,7 +11,7 @@ export const createOrder = async (req, res, next) => {
         const savedOrder = await newOrder.save();
         try {
             await User.findByIdAndUpdate(userId, {
-                $push: { orders: savedOrder._id },
+                $push: { orders: savedOrder},
             });
         } catch (err) {
             next(err);
@@ -71,14 +71,9 @@ export const getOrdersByUser = async (req, res, next) => {
 
     try {
         const user = await User.findById(userId);
+        const orders = user.orders;
 
-        const ordersPromises = user.orders.map((orderId) => Order.findById(orderId));
-        const orders = await Promise.all(ordersPromises);
-        user.orders = orders;
-
-        const detailedOrders = user.orders;
-
-        res.status(200).json(detailedOrders);
+        res.status(200).json(orders);
     } catch (err) {
         next(err);
     }

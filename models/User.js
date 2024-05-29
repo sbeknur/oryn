@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema(
             default: false,
         },
         orders: {
-            type: [String],
+            type: [],
         },
     },
     { timestamps: true }
