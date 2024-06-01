@@ -34,6 +34,15 @@ export const deleteRestaurant = async (req, res, next) => {
 export const getRestaurant = async (req, res, next) => {
     try {
         const restaurant = await Restaurant.findById(req.params.id);
+
+        const menuPromises = restaurant.menu.map((foodId) => Food.findById(foodId));
+        const menu = await Promise.all(menuPromises);
+        restaurant.menu = menu;
+
+        const placesPromises = restaurant.places.map((placeId) => Place.findById(placeId));
+        const places = await Promise.all(placesPromises);
+        restaurant.places = places;
+
         res.status(200).json(restaurant);
     } catch (err) {
         next(err);
@@ -42,8 +51,21 @@ export const getRestaurant = async (req, res, next) => {
 
 export const getRestaurants = async (req, res, next) => {
     try {
-        const restaurants = await Restaurant.find(req.params.id);
-        res.status(200).json(restaurants);
+        const restaurants = await Restaurant.find();
+
+        const restaurantPromises = restaurants.map(async (restaurant) => {
+            const menuPromises = restaurant.menu.map((foodId) => Food.findById(foodId));
+            const menu = await Promise.all(menuPromises);
+            restaurant.menu = menu;
+            
+            const placesPromises = restaurant.places.map((placeId) => Place.findById(placeId));
+            const places = await Promise.all(placesPromises);
+            restaurant.places = places;
+            return restaurant;
+        });
+
+        const detailedRestaurants = await Promise.all(restaurantPromises);
+        res.status(200).json(detailedRestaurants);
     } catch (err) {
         next(err);
     }

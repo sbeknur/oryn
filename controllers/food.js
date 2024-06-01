@@ -10,7 +10,7 @@ export const createFood = async (req, res, next) => {
         const savedFood = await newFood.save();
         try {
             await Restaurant.findByIdAndUpdate(restaurantId, {
-                $push: { menu: savedFood },
+                $push: { menu: savedFood._id },
             });
         } catch (err) {
             next(err);
@@ -53,7 +53,7 @@ export const getFood = async (req, res, next) => {
         res.status(200).json(food);
     } catch (err) {
         next(err);
-    }
+    }       
 };
 
 export const getFoods = async (req, res, next) => {

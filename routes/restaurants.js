@@ -28,6 +28,5 @@ router.get("/find/:id", getRestaurant);
 router.get("/", getRestaurants);
 router.get("/countByCity", countByCity);
 router.get("/countByType", countByType);
-router.get("/place/:id", getRestaurantPlaces);
 
 export default router;
