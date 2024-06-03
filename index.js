@@ -5,8 +5,8 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import restaurantsRoute from "./routes/restaurants.js";
 import placesRoute from "./routes/places.js";
-import foodsRoute from "./routes/foods.js"
-import ordersRoute from "./routes/orders.js"
+import foodsRoute from "./routes/foods.js";
+import ordersRoute from "./routes/orders.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
