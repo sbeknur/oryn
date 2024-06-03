@@ -5,6 +5,8 @@ import { createError } from "../utils/error.js";
 
 export const createOrder = async (req, res, next) => {
     const userId = req.params.userid;
+    const placeId = req.body.placeId;
+
     const newOrder = new Order(req.body);
 
     try {
@@ -13,6 +15,17 @@ export const createOrder = async (req, res, next) => {
             await User.findByIdAndUpdate(userId, {
                 $push: { orders: savedOrder._id },
             });
+
+            const start = savedOrder.date.start;
+            const duration = savedOrder.date.duration;
+
+            for (let i = 0; i < duration; i++) {
+                const dateToPush = new Date(start);
+                dateToPush.setHours(start.getHours() + i);
+                await Place.findByIdAndUpdate(placeId, {
+                    $push: { unavailableDates: dateToPush },
+                });
+            }
         } catch (err) {
             next(err);
         }
