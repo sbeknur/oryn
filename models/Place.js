@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 const PlaceSchema = new mongoose.Schema(
     {
+        title: {
+            type: String,  
+            required: true
+        },
         number: {
             type: Number,
-            required: true,
+            required: true
         },
         maxPeople: {
             type: Number,
@@ -18,6 +22,9 @@ const PlaceSchema = new mongoose.Schema(
         },
         position: {
             type: [],
+        },
+        panorama: {
+            type: String,
         }
     },
     { timestamps: true }

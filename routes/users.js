@@ -9,6 +9,10 @@ const router = express.Router();
  * tags:
  *   - name: "Users"
  *     description: "Operations related to users"
+ */
+
+/**
+ * @swagger
  * /api/users/{id}:
  *   put:
  *     summary: Update a user
@@ -21,6 +25,29 @@ const router = express.Router();
  *         description: ID of the user to update.
  *         schema:
  *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               img:
+ *                 type: string
+ *               city:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               isAdmin:
+ *                 type: boolean
+ *               isRestaurant:
+ *                 type: boolean
  *     security:
  *       - bearerAuth: []
  *     responses:

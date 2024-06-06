@@ -3,7 +3,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 const swaggerDefinition = {
     openapi: "3.0.0",
     info: {
-        title: "My API",
+        title: "Oryn API",
         version: "1.0.0",
         description: "This API provides functionalities for managing a catering service. It includes endpoints for user management, authentication, restaurant operations, managing places within restaurants, handling food items, and processing orders. The API is secured with JWT-based authentication and authorization.",
     },
