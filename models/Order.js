@@ -16,7 +16,7 @@ const OrderSchema = new mongoose.Schema(
             type: Number,
         },
         placeId: {
-            type: String,
+            type: String,   
         },
         isPaid: {
             type: String,

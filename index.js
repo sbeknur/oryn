@@ -7,6 +7,7 @@ import restaurantsRoute from "./routes/restaurants.js";
 import placesRoute from "./routes/places.js";
 import foodsRoute from "./routes/foods.js";
 import ordersRoute from "./routes/orders.js";
+import stripeRoute from "./routes/stripe.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -37,6 +38,7 @@ app.use("/api/restaurants", restaurantsRoute);
 app.use("/api/places", placesRoute);
 app.use("/api/foods", foodsRoute);
 app.use("/api/orders", ordersRoute);
+app.use("/api/payment", stripeRoute);
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
