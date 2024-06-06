@@ -9,6 +9,8 @@ import foodsRoute from "./routes/foods.js";
 import ordersRoute from "./routes/orders.js";
 import stripeRoute from "./routes/stripe.js"
 import cookieParser from "cookie-parser";
+import swaggerUI from "swagger-ui-express";
+import swaggerSpec from "./utils/swagger.js";
 import cors from "cors";
 
 const app = express();
@@ -31,7 +33,8 @@ mongoose.connection.on("disconnected", () => {
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+    
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/restaurants", restaurantsRoute);

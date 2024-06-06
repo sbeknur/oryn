@@ -71,40 +71,6 @@ export const getRestaurants = async (req, res, next) => {
     }
 };
 
-export const countByCity = async (req, res, next) => {
-    const cities = req.query.cities.split(",");
-    try {
-        const list = await Promise.all(
-            cities.map((city) => {
-                return Restaurant.countDocuments({ city: city });
-            })
-        );
-        res.status(200).json(list);
-    } catch (err) {
-        next(err);
-    }
-};
-
-export const countByType = async (req, res, next) => {
-    try {
-        const restaurantCount = await Restaurant.countDocuments({ type: "restaurant" });
-        const cafeCount = await Restaurant.countDocuments({ type: "cafe" });
-        const fastfoodCount = await Restaurant.countDocuments({ type: "fastfood" });
-        const cafeteriaCount = await Restaurant.countDocuments({ type: "cafeteria" });
-        const pubCount = await Restaurant.countDocuments({ type: "pub" });
-
-        res.status(200).json([
-            { type: "restaurant", count: restaurantCount },
-            { type: "cafe", count: cafeCount },
-            { type: "fastfood", count: fastfoodCount },
-            { type: "cafeteria", count: cafeteriaCount },
-            { type: "pub", count: pubCount },
-        ]);
-    } catch (err) {
-        next(err);
-    }
-};
-
 export const getRestaurantPlaces = async (req, res, next) => {
     try {
         const restaurant = await Restaurant.findById(req.params.id);
