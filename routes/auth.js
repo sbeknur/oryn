@@ -30,6 +30,10 @@ const router = express.Router();
  *                 type: string
  *               password:
  *                 type: string
+ *               city:
+ *                 type: string
+ *  *            phone:
+ *                 type: string
  *     responses:
  *       201:
  *         description: User registered successfully.
