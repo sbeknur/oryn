@@ -32,7 +32,7 @@ const router = express.Router();
  *                 type: string
  *               city:
  *                 type: string
- *  *            phone:
+ *               phone:
  *                 type: string
  *     responses:
  *       201:
