@@ -26,13 +26,13 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        isAdmin: {
-            type: Boolean,
-            default: false,
+        role: {
+            type: String,
+            enum: ["admin", "restaurant", "user"],
+            default: "user",
         },
-        isRestaurant: {
-            type: Boolean,
-            default: false,
+        restaurantId: {
+            type: String,
         },
         orders: {
             type: [],

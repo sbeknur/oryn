@@ -6,7 +6,7 @@ import {
   getRestaurants,
   updateRestaurant,
 } from "../controllers/restaurant.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyRestaurant } from "../utils/verifyToken.js";
 const router = express.Router();
 
 /**
@@ -132,7 +132,7 @@ router.post("/", verifyAdmin, createRestaurant);
  *       404:
  *         description: Restaurant not found.
  */
-router.put("/:id", verifyAdmin, updateRestaurant);
+router.put("/:id", verifyRestaurant, updateRestaurant);
 
 /**
  * @swagger
