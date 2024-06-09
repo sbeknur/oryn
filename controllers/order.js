@@ -93,3 +93,77 @@ export const getOrdersByUser = async (req, res, next) => {
         next(err);
     }
 };
+
+export const getOrdersByRestaurant = async (req, res, next) => {
+    const userId = req.params.userid;
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return next(createError(404, "User not found"));
+        }
+
+        if (user.role !== "restaurant") {
+            return next(createError(403, "You are not authorized to access this resource"));
+        }
+
+        const restaurant = await Restaurant.findById(user.restaurantId);
+
+        if (!restaurant) {
+            return next(createError(404, "Restaurant not found"));
+        }
+        const orders = await Order.find({ restaurant: restaurant.name });
+
+        res.status(200).json(orders);
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getChartData = async (req, res, next) => {
+    const userId = req.user.id;
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return next(createError(404, "User not found"));
+        }
+
+        let orders = [];
+
+        if (user.role === "restaurant") {
+            const restaurant = await Restaurant.findById(user.restaurantId);
+            if (!restaurant) {
+                return next(createError(404, "Restaurant not found"));
+            }
+            orders = await Order.find({ restaurant: restaurant.name });
+        } else if (user.role === "admin") {
+            orders = await Order.find();
+        } else {
+            return next(createError(403, "You are not authorized to view this data"));
+        }
+
+        const monthlyTotals = orders.reduce((acc, order) => {
+            const date = new Date(order.date.start);
+            const month = date.toLocaleString('default', { month: 'long' });
+
+            if (!acc[month]) {
+                acc[month] = 0;
+            }
+            acc[month] += order.bill;
+
+            return acc;
+        }, {});
+
+        const chartData = Object.keys(monthlyTotals).map(month => ({
+            name: month,
+            Total: monthlyTotals[month]
+        }));
+
+        res.status(200).json(chartData);
+    } catch (err) {
+        next(err);
+    }
+};

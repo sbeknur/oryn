@@ -1,6 +1,6 @@
 import express from "express";
-import { createOrder, deleteOrder, getOrder, getOrders, updateOrder, getOrdersByUser } from "../controllers/order.js";
-import { verifyAdmin, verifyUser, verifyToken } from "../utils/verifyToken.js";
+import { createOrder, deleteOrder, getOrder, getOrders, updateOrder, getOrdersByUser, getOrdersByRestaurant } from "../controllers/order.js";
+import { verifyAdmin, verifyUser, verifyToken, verifyRestaurant } from "../utils/verifyToken.js";
 
 const router = express.Router();
 

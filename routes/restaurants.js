@@ -164,7 +164,7 @@ router.delete("/:id", verifyAdmin, deleteRestaurant);
 
 /**
  * @swagger
- * /api/restaurants/find/{id}:
+ * /api/restaurants/{id}:
  *   get:
  *     summary: Get a restaurant
  *     description: Retrieve restaurant details by restaurant ID.
@@ -184,7 +184,7 @@ router.delete("/:id", verifyAdmin, deleteRestaurant);
  *       404:
  *         description: Restaurant not found.
  */
-router.get("/find/:id", getRestaurant);
+router.get("/:id", getRestaurant);
 
 /**
  * @swagger
