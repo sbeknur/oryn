@@ -1,6 +1,6 @@
 import express from "express";
 import { createOrder, deleteOrder, getOrder, getOrders, updateOrder, getOrdersByUser } from "../controllers/order.js";
-import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyUser, verifyToken } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -212,6 +212,6 @@ router.get("/", getOrders);
  *       400:
  *         description: Bad request.
  */
-router.get("/byuser/:userid", getOrdersByUser);
+router.get("/byuser/:userid", verifyToken, getOrdersByUser);
 
 export default router;
