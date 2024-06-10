@@ -212,6 +212,6 @@ router.get("/", getOrders);
  *       400:
  *         description: Bad request.
  */
-router.get("/byuser/:userid", verifyToken, getOrdersByUser);
+router.get("/byuser/:userid", getOrdersByUser);
 
 export default router;
