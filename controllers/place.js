@@ -63,3 +63,21 @@ export const getPlaces = async (req, res, next) => {
         next(err);
     }
 };
+
+export const getPlacesByRestaurant = async (req, res, next) => {
+    try {
+        const { restaurantid } = req.params;
+        const restaurant = await Restaurant.findById(restaurantid);
+        
+        if (!restaurant) {
+            return next(createError(404, "Restaurant not found"));
+        }
+
+        const placeIds = restaurant.places;
+        const places = await Place.find({ _id: { $in: placeIds } });
+
+        res.status(200).json(places);
+    } catch (err) {
+        next(err);
+    }
+};

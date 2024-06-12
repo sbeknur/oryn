@@ -8,7 +8,6 @@ import placesRoute from "./routes/places.js";
 import foodsRoute from "./routes/foods.js";
 import ordersRoute from "./routes/orders.js";
 import stripeRoute from "./routes/stripe.js";
-import statsRoute from "./routes/stats.js";
 import cookieParser from "cookie-parser";
 import swaggerUI from "swagger-ui-express";
 import swaggerSpec from "./utils/swagger.js";
@@ -43,7 +42,6 @@ app.use("/api/places", placesRoute);
 app.use("/api/foods", foodsRoute);
 app.use("/api/orders", ordersRoute);
 app.use("/api/payment", stripeRoute);
-app.use("/api/stats",statsRoute);
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;

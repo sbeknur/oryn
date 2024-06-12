@@ -1,6 +1,6 @@
 import express from "express";
-import { createFood, deleteFood, getFood, getFoods, updateFood } from "../controllers/food.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { createFood, deleteFood, getFood, getFoods, updateFood, getFoodsByRestaurant } from "../controllers/food.js";
+import { verifyAdmin, verifyRestaurant } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -138,7 +138,7 @@ router.put("/:id", verifyAdmin, updateFood);
  *       404:
  *         description: Food item not found.
  */
-router.delete("/:id/:restaurantid", verifyAdmin, deleteFood);
+router.delete("/:id/:restaurantid", verifyAdmin, verifyRestaurant, deleteFood);
 
 /**
  * @swagger
@@ -178,5 +178,7 @@ router.get("/:id", getFood);
  *         description: Bad request.
  */
 router.get("/", getFoods);
+
+router.get("/:byrestaurant/:restaurantid", getFoodsByRestaurant);
 
 export default router;

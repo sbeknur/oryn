@@ -7,7 +7,6 @@ export const createRestaurant = async (req, res, next) => {
 
     try {
         const savedRestaurant = await newRestaurant.save();
-        await User.findByIdAndUpdate(req.user.id, { restaurantId: savedRestaurant._id });
         res.status(200).json(savedRestaurant);
     } catch (err) {
         next(err);

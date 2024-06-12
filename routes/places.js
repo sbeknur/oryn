@@ -1,6 +1,6 @@
 import express from "express";
-import { createPlace, deletePlace, getPlace, getPlaces, updatePlace } from "../controllers/place.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { createPlace, deletePlace, getPlace, getPlaces, updatePlace, getPlacesByRestaurant } from "../controllers/place.js";
+import { verifyAdmin, verifyRestaurant } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -140,7 +140,7 @@ router.put("/:id", verifyAdmin, updatePlace);
  *       404:
  *         description: Place not found.
  */
-router.delete("/:id/:restaurantid", verifyAdmin, deletePlace);
+router.delete("/:id/:restaurantid", verifyAdmin, verifyRestaurant, deletePlace);
 
 /**
  * @swagger
@@ -180,5 +180,7 @@ router.get("/:id", getPlace);
  *         description: Bad request.
  */
 router.get("/", getPlaces);
+
+router.get("/:byrestaurant/:restaurantid", getPlacesByRestaurant);
 
 export default router;

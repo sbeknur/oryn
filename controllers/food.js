@@ -64,3 +64,21 @@ export const getFoods = async (req, res, next) => {
         next(err);
     }
 };
+
+export const getFoodsByRestaurant = async (req, res, next) => {
+    try {
+        const { restaurantid } = req.params;
+        const restaurant = await Restaurant.findById(restaurantid);
+        
+        if (!restaurant) {
+            return next(createError(404, "Restaurant not found"));
+        }
+
+        const foodIds = restaurant.menu;
+        const foods = await Food.find({ _id: { $in: foodIds } });
+
+        res.status(200).json(foods);
+    } catch (err) {
+        next(err);
+    }
+};
