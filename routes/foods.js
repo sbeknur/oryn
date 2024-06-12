@@ -179,6 +179,28 @@ router.get("/:id", getFood);
  */
 router.get("/", getFoods);
 
+/**
+ * @swagger
+ * /api/foods/byrestaurant/{restaurantid}:
+ *   get:
+ *     summary: Get foods by restaurant
+ *     description: Retrieve a list of foods for a specific restaurant by restaurant ID.
+ *     tags: [Foods]
+ *     parameters:
+ *       - in: path
+ *         name: restaurantid
+ *         required: true
+ *         description: ID of the restaurant to retrieve foods for.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Foods retrieved successfully.
+ *       400:
+ *         description: Bad request.
+ *       404:
+ *         description: Restaurant not found.
+ */
 router.get("/:byrestaurant/:restaurantid", getFoodsByRestaurant);
 
 export default router;

@@ -181,6 +181,28 @@ router.get("/:id", getPlace);
  */
 router.get("/", getPlaces);
 
+/**
+ * @swagger
+ * /api/places/byrestaurant/{restaurantid}:
+ *   get:
+ *     summary: Get places by restaurant
+ *     description: Retrieve a list of places for a specific restaurant by restaurant ID.
+ *     tags: [Places]
+ *     parameters:
+ *       - in: path
+ *         name: restaurantid
+ *         required: true
+ *         description: ID of the restaurant to retrieve places for.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Places retrieved successfully.
+ *       400:
+ *         description: Bad request.
+ *       404:
+ *         description: Restaurant not found.
+ */
 router.get("/:byrestaurant/:restaurantid", getPlacesByRestaurant);
 
 export default router;
